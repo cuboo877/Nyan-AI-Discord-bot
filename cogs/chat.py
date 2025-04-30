@@ -8,12 +8,13 @@ class Chat(commands.Cog):
     @commands.command()
     async def chat(self, ctx:commands.Context, user_input:str):
         try:
-            print("request to gemini now")
-            response = await request(user_input)
-            if response:
-                await ChatOutput(response=response, ctx=ctx).strip_output()
-            else:
-                await ctx.send("Error: No response from Gemini API")
+            async with ctx.message.channel.typing():
+                print("request to gemini now")
+                response = await request(user_input)
+                if response:
+                    await ChatOutput(response=response, ctx=ctx).strip_output()
+                else:
+                    await ctx.send("Error: No response from Gemini API")
         except Exception as e:
             await ctx.send(f"Error: {e}")
 
