@@ -1,7 +1,7 @@
 from google import genai
 import os
 from dotenv import load_dotenv
-from utils.config_loader import ConfigLoader
+from utils.config_controller import ConfigController
 from utils.error_logger import ErrorLogger
 
 load_dotenv()
@@ -9,8 +9,8 @@ load_dotenv()
 
 apiKey = os.getenv('gemini-apiKey')
 client = genai.Client(api_key=apiKey)
-model_name = ConfigLoader.get(key = "model")
-role_prompt = ConfigLoader.get(key = "role")
+model_name = ConfigController.get(key = "model")
+role_prompt = ConfigController.get(key = "role")
 
 async def request(prompt:str):
     prompt = role_prompt + prompt

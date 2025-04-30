@@ -5,5 +5,3 @@ config.json
     提供使用者調整temperature的功能。
 -text_speed
     調整在discord上分段輸出文字的每一句之間的間隔
-
-role_
